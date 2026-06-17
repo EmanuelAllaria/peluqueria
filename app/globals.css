@@ -1,26 +1,134 @@
 @import "tailwindcss";
+@import "react-day-picker/style.css";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0a0a0a;
+  --foreground: #f5f0e8;
+  --muted: #a39e94;
+  --gold: #c9a962;
+  --gold-light: #e8d5a3;
+  --gold-dark: #9a7b3c;
+  --surface: #141414;
+  --surface-elevated: #1c1c1c;
+  --border: rgba(201, 169, 98, 0.2);
+  --border-hover: rgba(201, 169, 98, 0.5);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-muted: var(--muted);
+  --color-gold: var(--gold);
+  --color-gold-light: var(--gold-light);
+  --color-gold-dark: var(--gold-dark);
+  --color-surface: var(--surface);
+  --color-surface-elevated: var(--surface-elevated);
+  --color-border: var(--border);
+  --font-sans: var(--font-outfit);
+  --font-serif: var(--font-cormorant);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-outfit), system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: rgba(201, 169, 98, 0.35);
+  color: var(--foreground);
+}
+
+.font-serif {
+  font-family: var(--font-cormorant), Georgia, serif;
+}
+
+.gold-gradient-text {
+  background: linear-gradient(135deg, var(--gold-light), var(--gold), var(--gold-dark));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gold-line {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+.section-padding {
+  padding: 6rem 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .section-padding {
+    padding: 8rem 2rem;
+  }
+}
+
+.container-narrow {
+  max-width: 72rem;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* DayPicker custom theme */
+.rdp-root {
+  --rdp-accent-color: var(--gold);
+  --rdp-accent-background-color: rgba(201, 169, 98, 0.15);
+  --rdp-day-height: 44px;
+  --rdp-day-width: 44px;
+  --rdp-selected-border: 1px solid var(--gold);
+  color: var(--foreground);
+  font-family: var(--font-outfit), sans-serif;
+}
+
+.rdp-months {
+  justify-content: center;
+}
+
+.rdp-day_button {
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.rdp-day_button:hover:not(:disabled) {
+  background: rgba(201, 169, 98, 0.1);
+}
+
+.rdp-selected .rdp-day_button {
+  background: rgba(201, 169, 98, 0.2) !important;
+  border: 1px solid var(--gold);
+  color: var(--gold-light);
+}
+
+.rdp-disabled .rdp-day_button {
+  opacity: 0.3;
+}
+
+.rdp-caption_label {
+  font-family: var(--font-cormorant), serif;
+  font-size: 1.25rem;
+  color: var(--gold-light);
+}
+
+.rdp-weekday {
+  color: var(--muted);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
 }
